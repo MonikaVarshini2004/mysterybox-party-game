@@ -1,0 +1,86 @@
+/* ══════════════════════════════════════════
+   index.css – global base styles
+   MysteryBox: pink · purple · lavender · blue
+   ══════════════════════════════════════════ */
+
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Outfit:wght@400;500;600;700&display=swap");
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Root design tokens ── */
+:root {
+  --pink:    #f9a8d4;
+  --rose:    #f472b6;
+  --purple:  #c084fc;
+  --indigo:  #818cf8;
+  --lavender:#e0d7ff;
+  --bg-dark: #0d0520;
+}
+
+/* ── Body – animated gradient background ── */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+
+  /* 6-stop pink → purple → lavender → blue gradient */
+  background: linear-gradient(
+    135deg,
+    #1a0533,
+    #2d0a5a,
+    #3b1a8a,
+    #1e3a8a,
+    #0f172a,
+    #2d1060
+  );
+  background-size: 400% 400%;
+  animation: bgShift 16s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(192, 132, 252, 0.5);
+  border-radius: 99px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(192, 132, 252, 0.4);
+  color: #fff;
+}
+
+/* ── Remove default number input arrows ── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}

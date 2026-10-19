@@ -1,0 +1,515 @@
+/* ══════════════════════════════════════════
+   SetupScreen.css
+   Styles for the setup / form screen
+   ══════════════════════════════════════════ */
+
+/* ── Wrapper ── */
+.setup-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ── Header ── */
+.setup-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  animation: fadeSlideDown 0.8s ease both;
+}
+
+.emoji-row {
+  font-size: 1.8rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 0.5rem;
+  animation: sway 3s ease-in-out infinite;
+}
+
+.app-title {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  background: linear-gradient(135deg, #f9a8d4, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0.4rem 0 0;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ── Form card ── */
+.setup-form {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(25, 10, 50, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(192, 132, 252, 0.3);
+  border-radius: 26px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 12px 50px rgba(106, 17, 203, 0.35),
+    0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeSlideUp 0.9s ease 0.2s both;
+}
+
+/* ── Form group ── */
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.45rem;
+}
+
+.label-hint {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Inputs ── */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.98rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #c084fc;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.25);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ── Inline group (number + button) ── */
+.inline-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.inline-group .form-input {
+  flex: 1;
+}
+
+/* ── Player grid ── */
+.player-inputs-section {
+  animation: fadeSlideUp 0.4s ease both;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f9a8d4;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+.player-field .form-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Custom Challenges Builder ── */
+.custom-challenge-builder {
+  background: rgba(14, 5, 32, 0.55);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-radius: 18px;
+  padding: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.custom-builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.builder-pill {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 99px;
+  background: rgba(192, 132, 252, 0.2);
+  color: #e0d7ff;
+}
+
+.builder-hint {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1rem;
+}
+
+.custom-input-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.custom-controls-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.65rem;
+}
+
+.custom-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.custom-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+.custom-select {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: #1e0d3a;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.custom-select:focus {
+  border-color: #f472b6;
+}
+
+.custom-input-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.custom-text-input {
+  flex: 1;
+}
+
+.custom-add-btn {
+  padding: 0.75rem 1.1rem;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.custom-error-text {
+  font-size: 0.82rem;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+}
+
+/* Custom chips list */
+.custom-challenges-list {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.custom-list-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f9a8d4;
+  display: block;
+  margin-bottom: 0.65rem;
+}
+
+.custom-chips-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+
+.custom-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-radius: 12px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background 0.2s;
+}
+
+.custom-chip:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.chip-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.chip-type-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #f9a8d4;
+}
+
+.chip-diff-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.chip-diff--easy {
+  background: rgba(52, 211, 153, 0.2);
+  color: #6ee7b7;
+}
+
+.chip-diff--medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+}
+
+.chip-diff--hard {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+}
+
+.chip-text {
+  font-size: 0.85rem;
+  color: #ffffff;
+  flex: 1;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.chip-remove-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  transition: color 0.18s, background 0.18s;
+}
+
+.chip-remove-btn:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: 0.75rem 1.3rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(129, 140, 248, 0.4);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f472b6, #c084fc, #818cf8);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(244, 114, 182, 0.45);
+  letter-spacing: 0.03em;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.95rem;
+  font-size: 1.15rem;
+  border-radius: 14px;
+  margin-top: 0.85rem;
+  animation: popIn 0.5s ease both;
+}
+
+/* ── Error ── */
+.error-msg {
+  color: #fca5a5;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+/* ── Animations ── */
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Per-field inline errors ── */
+.field-error {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fca5a5;
+  margin-top: 0.25rem;
+  animation: fadeSlideUp 0.2s ease both;
+}
+
+.input--error {
+  border-color: rgba(252, 165, 165, 0.7) !important;
+  box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.2) !important;
+}
+
+.player-field--error .form-label {
+  color: #fca5a5;
+}
+
+/* ── Using-defaults notice ── */
+.using-defaults-note {
+  font-size: 0.82rem;
+  color: rgba(167, 243, 208, 0.9);
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* ── Resume banner ── */
+.resume-banner {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.22), rgba(192, 132, 252, 0.22));
+  border: 1.5px solid rgba(129, 140, 248, 0.55);
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeSlideDown 0.35s ease both;
+}
+
+.resume-banner-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.resume-btn {
+  padding: 0.55rem 1.15rem;
+  font-size: 0.9rem;
+}
+
+.setup-storage-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 1.5rem 0 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .setup-form {
+    padding: 1.75rem 1.2rem;
+  }
+
+  .inline-group {
+    flex-direction: column;
+  }
+
+  .player-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-input-row {
+    flex-direction: column;
+  }
+
+  .custom-add-btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,198 @@
+/* ══════════════════════════════════════════
+   GiftBox.css  –  mystery box cards
+   Uses CSS custom props --c1 --c2 --glow
+   injected per-box from GiftBox.jsx
+   ══════════════════════════════════════════ */
+
+/* ── Base card ── */
+.gift-box {
+  /* Layout */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 148px;
+  height: 168px;
+  padding: 1rem 0.6rem 0.8rem;
+  overflow: hidden;
+
+  /* Theming via CSS custom props */
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--c1) 20%, transparent),
+    color-mix(in srgb, var(--c2) 28%, transparent)
+  );
+  border: 1.5px solid color-mix(in srgb, var(--c1) 45%, transparent);
+  border-radius: 22px;
+  box-shadow:
+    0 8px 28px var(--glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Reset button defaults */
+  cursor: pointer;
+  font-family: inherit;
+
+  /* Entrance animation (staggered via animationDelay inline) */
+  animation: boxEntrance 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             boxFloat 3.2s ease-in-out infinite alternate;
+  transition: transform 0.25s, box-shadow 0.25s, opacity 0.3s, filter 0.3s;
+}
+
+.gift-box:focus-visible {
+  outline: 3px solid #f472b6;
+  outline-offset: 4px;
+}
+
+/* ── Hover & Click Feedback ── */
+.gift-box:not([aria-disabled="true"]):hover {
+  transform: translateY(-10px) scale(1.06);
+  box-shadow:
+    0 18px 44px var(--glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation-play-state: paused;
+}
+
+.gift-box:not([aria-disabled="true"]):active {
+  transform: translateY(-2px) scale(0.96);
+  filter: brightness(1.15);
+}
+
+/* ── Shimmer sweep ── */
+.gift-box__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 65%
+  );
+  background-size: 300% 100%;
+  background-position: 120% 0;
+  border-radius: inherit;
+  transition: background-position 0.55s ease;
+  pointer-events: none;
+}
+
+.gift-box:not([aria-disabled="true"]):hover .gift-box__shimmer {
+  background-position: -20% 0;
+}
+
+/* ── Inner elements ── */
+.gift-box__emoji {
+  font-size: 2.6rem;
+  line-height: 1;
+  display: block;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s;
+}
+
+.gift-box:not([aria-disabled="true"]):hover .gift-box__emoji {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.gift-box__name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  word-break: break-word;
+  max-width: 100%;
+  line-height: 1.25;
+}
+
+/* ── Status badge ── */
+.gift-box__badge {
+  position: absolute;
+  bottom: 8px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 20px;
+  padding: 2px 9px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* ── State: Opening (pop animation before modal) ── */
+.gift-box--opening {
+  transform: scale(1.12) rotate(-4deg) !important;
+  box-shadow: 0 0 35px var(--glow), 0 0 50px rgba(255, 255, 255, 0.45) !important;
+  filter: brightness(1.25) !important;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  z-index: 5;
+}
+
+.gift-box--opening .gift-box__emoji {
+  transform: translateY(-8px) scale(1.25) rotate(12deg);
+}
+
+/* ── State: Opened (revealed but not acted on) ── */
+.gift-box--opened {
+  opacity: 0.6;
+  filter: brightness(0.85);
+  animation: none !important;
+  transform: none !important;
+  cursor: default;
+}
+
+/* ── State: Completed ── */
+.gift-box--completed {
+  opacity: 0.75;
+  filter: brightness(0.9) saturate(0.7);
+  animation: none !important;
+  transform: none !important;
+  cursor: default;
+  border-color: rgba(52, 211, 153, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.2) !important;
+}
+
+.gift-box--completed .gift-box__badge {
+  background: rgba(52, 211, 153, 0.3);
+  color: rgba(167, 243, 208, 0.95);
+}
+
+/* ── State: Skipped ── */
+.gift-box--skipped {
+  opacity: 0.5;
+  filter: grayscale(0.55) brightness(0.8);
+  animation: none !important;
+  transform: none !important;
+  cursor: default;
+}
+
+/* ── Animations ── */
+@keyframes boxEntrance {
+  from { opacity: 0; transform: scale(0.6) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes boxFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .gift-box {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .gift-box {
+    width: 120px;
+    height: 138px;
+  }
+
+  .gift-box__emoji { font-size: 2.1rem; }
+  .gift-box__name  { font-size: 0.82rem; }
+}

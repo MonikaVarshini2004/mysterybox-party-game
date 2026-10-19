@@ -1,0 +1,462 @@
+/* ══════════════════════════════════════════
+   RevealModal.css
+   ══════════════════════════════════════════ */
+
+/* ── Overlay ── */
+.rm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 4, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: rmOverlayIn 0.22s ease both;
+  overflow-y: auto;
+}
+
+@keyframes rmOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Confetti burst ── */
+.rm-confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.confetti-particle {
+  position: absolute;
+  top: -16px;
+  animation: confettiFall linear both;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── Card ── */
+.rm-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: linear-gradient(
+    155deg,
+    rgba(26, 11, 56, 0.98),
+    rgba(42, 16, 78, 0.98)
+  );
+  border: 1.5px solid rgba(192, 132, 252, 0.45);
+  border-radius: 28px;
+  padding: 2.2rem 1.8rem 1.8rem;
+  text-align: center;
+  box-shadow:
+    0 24px 70px rgba(106, 17, 203, 0.65),
+    0 4px 18px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  animation: rmCardIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes rmCardIn {
+  from { transform: scale(0.65); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ── Accent emojis ── */
+.rm-accent {
+  position: absolute;
+  font-size: 1.6rem;
+  animation: rmAccentFloat 2.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.rm-accent--tl { top: 14px;  left: 18px;  animation-delay: 0s;    }
+.rm-accent--tr { top: 12px;  right: 18px; animation-delay: 0.5s;  }
+.rm-accent--br { bottom: 58px; right: 14px; animation-delay: 1.1s; }
+
+@keyframes rmAccentFloat {
+  from { transform: translateY(0) rotate(-8deg); }
+  to   { transform: translateY(-8px) rotate(8deg); }
+}
+
+/* ── Header ── */
+.rm-header {
+  margin-bottom: 1.2rem;
+}
+
+.rm-box-icon {
+  font-size: 3.4rem;
+  display: block;
+  margin-bottom: 0.3rem;
+  animation: rmBoxPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+@keyframes rmBoxPop {
+  from { transform: rotate(-20deg) scale(0.4); opacity: 0; }
+  60%  { transform: rotate(8deg) scale(1.2); }
+  to   { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+.rm-player-name {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  background: linear-gradient(135deg, #f9a8d4, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.3rem;
+  line-height: 1.2;
+}
+
+.rm-tagline {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+  margin: 0 0 0.5rem;
+}
+
+.rm-points-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(250, 204, 21, 0.16);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: #facc15;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: 99px;
+  letter-spacing: 0.04em;
+}
+
+.rm-bonus-tag {
+  background: linear-gradient(135deg, #f472b6, #c084fc);
+  color: #fff;
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+/* ── Truth or Dare Tabs ── */
+.rm-tod-selector {
+  display: flex;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  padding: 0.3rem;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.rm-tod-tab {
+  flex: 1;
+  padding: 0.55rem 0.6rem;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.rm-tod-tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rm-tod-tab.active {
+  background: linear-gradient(135deg, #f472b6, #c084fc);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(244, 114, 182, 0.4);
+}
+
+/* ── Reveal info cards ── */
+.rm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.rm-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  border-radius: 18px;
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  animation: rmCardSlide 0.4s ease both;
+}
+
+.rm-info-card--secret {
+  background: rgba(249, 168, 212, 0.12);
+  border: 1px solid rgba(249, 168, 212, 0.3);
+  animation-delay: 0.18s;
+}
+
+.rm-info-card--dare {
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.32);
+  animation-delay: 0.25s;
+}
+
+.rm-info-card--truth {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  animation-delay: 0.25s;
+}
+
+.rm-info-card--surprise {
+  background: rgba(251, 146, 60, 0.12);
+  border: 1px solid rgba(251, 146, 60, 0.32);
+  animation-delay: 0.25s;
+}
+
+@keyframes rmCardSlide {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rm-info-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.rm-info-text {
+  flex: 1;
+}
+
+.rm-badges-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.4rem;
+}
+
+.rm-info-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rm-diff-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.rm-diff--easy {
+  background: rgba(52, 211, 153, 0.22);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.rm-diff--medium {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.rm-diff--hard {
+  background: rgba(244, 63, 94, 0.22);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.rm-cat-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(192, 132, 252, 0.18);
+  color: #e0d7ff;
+  border: 1px solid rgba(192, 132, 252, 0.3);
+}
+
+.rm-info-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  line-height: 1.4;
+}
+
+/* Reroll button */
+.rm-btn-reroll {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: center;
+  font-family: inherit;
+}
+
+.rm-btn-reroll:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: #f472b6;
+}
+
+/* Rules box in surprise mode */
+.rm-rules-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-left: 3px solid #facc15;
+}
+
+.rm-rules-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #facc15;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.rm-rules-text {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Voluntary hint */
+.rm-voluntary-hint {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.4rem 0 0.8rem;
+}
+
+/* ── Status messages ── */
+.rm-status {
+  font-size: 0.98rem;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.6rem;
+  animation: rmCardSlide 0.3s ease both;
+}
+
+.rm-status--completed {
+  background: rgba(52, 211, 153, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #6ee7b7;
+}
+
+.rm-status--skipped {
+  background: rgba(148, 163, 184, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgba(226, 232, 240, 0.9);
+}
+
+/* ── Action buttons ── */
+.rm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  animation: rmCardSlide 0.4s ease 0.25s both;
+}
+
+.rm-btn {
+  width: 100%;
+  padding: 0.82rem 1rem;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.rm-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.rm-btn:active {
+  transform: scale(0.97);
+}
+
+/* Complete – green */
+.rm-btn--complete {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(16, 185, 129, 0.4);
+}
+
+/* Skip – muted slate */
+.rm-btn--skip {
+  background: rgba(100, 116, 139, 0.28);
+  color: rgba(226, 232, 240, 0.9);
+  border: 1px solid rgba(100, 116, 139, 0.35);
+}
+
+.rm-btn--skip:hover {
+  background: rgba(100, 116, 139, 0.45);
+}
+
+/* Close – pink/purple gradient */
+.rm-btn--close {
+  background: linear-gradient(135deg, #f472b6, #c084fc, #818cf8);
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(244, 114, 182, 0.38);
+}
+
+.rm-btn:focus-visible,
+.rm-tod-tab:focus-visible,
+.rm-btn-reroll:focus-visible {
+  outline: 3px solid #f472b6;
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .rm-overlay,
+  .rm-card,
+  .rm-confetti,
+  .rm-accent,
+  .rm-box-icon,
+  .rm-info-card,
+  .rm-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .rm-card {
+    padding: 1.8rem 1.15rem 1.4rem;
+  }
+
+  .rm-info-card {
+    padding: 0.9rem 1rem;
+  }
+}

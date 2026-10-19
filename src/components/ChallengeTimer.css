@@ -1,0 +1,211 @@
+/* ══════════════════════════════════════════
+   ChallengeTimer.css
+   Neon purple-pink glassmorphic timer styling
+   ══════════════════════════════════════════ */
+
+.challenge-timer {
+  background: rgba(18, 8, 38, 0.65);
+  border: 1.5px solid rgba(192, 132, 252, 0.32);
+  border-radius: 20px;
+  padding: 1.1rem 1.2rem;
+  margin: 1.1rem 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.challenge-timer.timer--urgent {
+  border-color: rgba(244, 63, 94, 0.7);
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.35);
+}
+
+.challenge-timer.timer--finished {
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 0 25px rgba(250, 204, 21, 0.4);
+}
+
+/* Header */
+.timer-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.timer-icon {
+  font-size: 1.25rem;
+}
+
+.timer-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e0d7ff;
+}
+
+.timer-badge-done {
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  color: #1e1035;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  animation: bounceBadge 0.6s ease infinite alternate;
+}
+
+@keyframes bounceBadge {
+  from { transform: scale(0.95); }
+  to { transform: scale(1.08); }
+}
+
+/* Duration selector pills */
+.timer-durations {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.timer-duration-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.timer-duration-btn:hover:not(:disabled) {
+  background: rgba(192, 132, 252, 0.2);
+  color: #fff;
+  border-color: rgba(192, 132, 252, 0.5);
+  transform: translateY(-1px);
+}
+
+.timer-duration-btn.active {
+  background: linear-gradient(135deg, #f472b6, #c084fc);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(192, 132, 252, 0.4);
+}
+
+.timer-duration-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Clock Digits */
+.timer-display-wrap {
+  margin-bottom: 0.95rem;
+}
+
+.timer-clock-digits {
+  font-family: monospace, "Outfit", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(244, 114, 182, 0.6);
+  line-height: 1.1;
+  margin-bottom: 0.45rem;
+}
+
+.pulse-urgent {
+  color: #fb7185;
+  text-shadow: 0 0 18px rgba(244, 63, 94, 0.8);
+  animation: urgentPulse 0.5s ease infinite alternate;
+}
+
+@keyframes urgentPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* Progress track */
+.timer-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.timer-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #818cf8, #c084fc, #f472b6);
+  border-radius: 99px;
+  transition: width 0.3s linear;
+}
+
+.timer--urgent .timer-progress-fill {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.timer--finished .timer-progress-fill {
+  background: #facc15;
+}
+
+/* Controls */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.timer-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.18s, filter 0.18s, box-shadow 0.18s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.timer-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.timer-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.timer-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.timer-btn--start {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.timer-btn--pause {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+.timer-btn--reset {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.timer-btn--reset:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
